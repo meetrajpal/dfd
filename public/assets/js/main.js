@@ -1,11 +1,3 @@
-/**
-* Template Name: HeroBiz
-* Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
@@ -107,6 +99,20 @@
    */
   const glightbox = GLightbox({
     selector: '.glightbox'
+  });
+
+  $(function() {
+    'use strict';
+    
+    $('.form-control').on('input', function() {
+      var $field = $(this).closest('.form-group');
+      if (this.value) {
+        $field.addClass('field--not-empty');
+      } else {
+        $field.removeClass('field--not-empty');
+      }
+    });
+  
   });
 
   /**

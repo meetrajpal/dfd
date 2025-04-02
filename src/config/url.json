@@ -1,0 +1,106 @@
+[
+    {
+        "operationType" : "getStatements",
+        "url" : "/api/statements"
+    },
+    {
+        "operationType" : "postStatementsManual",
+        "url" : "/api/statements/manual"
+    },
+    {
+        "operationType" : "getBanks",
+        "url" : "/api/banks"
+    },
+    {
+        "operationType" : "getParties",
+        "url" : "/api/parties"
+    },
+    {
+        "operationType" : "getCompanies",
+        "url" : "/api/companies"
+    },
+    {
+        "operationType" : "putParty",
+        "url" : "/api/statements/addparty/"
+    },
+    {
+        "operationType" : "postLogout",
+        "url" : "/api/v1/auth/logout"
+    },
+    {
+        "operationType" : "postLogin",
+        "url" : "/api/v1/auth/login"
+    },
+    {
+        "operationType" : "postAddNew",
+        "url" : "/api/addnew/"
+    },
+    {
+        "operationType" : "getBankBalance",
+        "url" : "/api/bankbalances"
+    },
+    {
+        "operationType" : "putAllBankBalance",
+        "url" : "/api/bankbalances/updateAllBal/"
+    },
+    {
+        "operationType" : "putOpnBankBalance",
+        "url" : "/api/bankbalances/updateOpnBal/"
+    },
+    {
+        "operationType" : "getPartyBalance",
+        "url" : "/api/partybalances"
+    },
+    {
+        "operationType" : "putPartyBalance",
+        "url" : "/api/partybalances/updatepartybalance"
+    },
+    {
+        "operationType" : "putPartyCharge",
+        "url" : "/api/partybalances/updatepartycharge"
+    },
+    {
+        "operationType" : "postCreateOrUpdateDailyAccount",
+        "url" : "/api/dailyaccounts/createorupdate"
+    },
+    {
+        "operationType" : "getPartyReport",
+        "url" : "/api/dailyaccounts/parties/report/"
+    },
+    {
+        "operationType" : "getBankReport",
+        "url" : "/api/bankbalances/report/"
+    },
+    {
+        "operationType" : "deleteStatement",
+        "url" : "/api/statements/"
+    },
+    {
+        "operationType" : "getUsers",
+        "url" : "/api/users"
+    },
+    {
+        "operationType" : "deleteUser",
+        "url" : "/api/users/"
+    },
+    {
+        "operationType" : "createUser",
+        "url" : "/api/v1/auth/signup"
+    },
+    {
+        "operationType" : "partyAccess",
+        "url" : "/api/users_party_access"
+    },
+    {
+        "operationType" : "bankAccess",
+        "url" : "/api/users_bank_access"
+    },
+    {
+        "operationType" : "companyAccess",
+        "url" : "/api/users_company_access"
+    },
+    {
+        "operationType" : "accessRole",
+        "url" : "/api/users_access_role"
+    }
+]

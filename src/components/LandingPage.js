@@ -4,17 +4,21 @@ export default function LandingPage() {
     return (
         <main className="main" style={{ 'background-image': `url('https://images.unsplash.com/photo-1736430043488-0c369959a5c6')`, 'backgroundSize': 'cover', 'backgroundPosition': 'center bottom' }}>
             <section id="hero" className="hero section">
-                <div className="container d-flex flex-column justify-content-center align-items-center text-center position-relative p-5" style={{ 'backdropFilter': 'blur(5px)' }}>
+                <div className="container d-flex flex-column justify-content-center align-items-center text-center position-relative p-5" style={{ 'background': 'rgba(0, 0, 0, 0.5)' }}>
                     {/* <img
                         src="https://images.unsplash.com/photo-1736430043488-0c369959a5c6"
                         alt="AI Technology"
                         className="w-50 img-thumbnail"
                     /> */}
-                    <h1 className='text-white'>Welcome to Deepfake Gaurd</h1>
-                    <p className='text-white'>Our advanced AI technology helps you identify manipulated images and videos
-                        with high accuracy. Protect yourself from digital deception.</p>
+                    <h1 className='text-white fw-bold' style={{ 'text-shadow': '2px 2px 5px rgba(0, 0, 0, 0.7)' }}>
+                        Welcome to Deepfake Gaurd
+                    </h1>
+                    <p className='text-white fw-bold' style={{ 'text-shadow': '2px 2px 2px rgba(0, 0, 0, 0.7)' }}>
+                        Our advanced AI technology helps you identify manipulated images and videos
+                        with high accuracy. Protect yourself from digital deception.
+                    </p>
                     <div className="d-flex">
-                        <a href="#about" className="btn-get-started scrollto">Get Started</a>
+                        <Link to="dashboard" className="btn-get-started scrollto">Get Started</Link>
                     </div>
                 </div>
 
