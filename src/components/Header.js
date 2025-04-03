@@ -1,7 +1,68 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import urls from '../config/url.json';
+import axios from 'axios';
 
 function Header() {
     const location = useLocation();
+    const navigate = useNavigate();
+
+    async function logout() {
+        const uri = urls.find(data => data.operationType === 'postLogout')?.url;
+        if (!uri) {
+            alert("No logout endpoint found.");
+            return;
+        }
+
+        if(window.confirm("Are you sure you want to logout?")){
+            try {
+                const res = await axios.get(process.env.REACT_APP_API_URL + uri);
+                const data = res.data;
+                if (data.isSuccess) {
+                    alert("Logout success.")
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('user_id');
+                    navigate('/');
+                    window.location.reload();
+                }
+            } catch (error) {
+                if (error.response?.data?.message) {
+                    alert({ form: error.response.data.message });
+                } else {
+                    alert({ form: "Logout failed." });
+                }
+            }
+        }
+    }
+
+    async function deleteAccount() {
+        const uri = urls.find(data => data.operationType === 'getUser')?.url;
+        if (!uri) {
+            alert("No logout endpoint found for deleteUser.");
+            return;
+        }
+
+        if(window.confirm("Are you sure you want to delete your account?")){
+            try {
+                const res = await axios.delete(process.env.REACT_APP_API_URL + uri + `?user_id=${localStorage.getItem('user_id')}`);
+                const data = res.data;
+                if (data.isSuccess) {
+                    alert("Account deleted successfully.");
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('user_id');
+                    navigate('/');
+                    window.location.reload();
+                }
+            } catch (error) {
+                if (error.response?.data?.message) {
+                    alert({ form: error.response.data.message });
+                } else {
+                    alert({ form: "Account deletion failed." });
+                }
+            }
+        }
+    }
 
     return (
         <header id="header" className="header d-flex align-items-center sticky-top">
@@ -32,8 +93,8 @@ function Header() {
                                 {localStorage.getItem('username')}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Delete Account</a></li>
-                                <li><a class="dropdown-item" href="#">Log out</a></li>
+                                <li><button class="dropdown-item" onClick={deleteAccount}>Delete Account</button></li>
+                                <li><button class="dropdown-item" onClick={logout}>Log out</button></li>
                             </ul>
                         </div>
                 }

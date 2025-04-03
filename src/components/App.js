@@ -5,17 +5,21 @@ import LandingPage from './LandingPage';
 import Login from './Login';
 import Signup from './Signup';
 import VerifyAccount from './VerifyAccount';
+import Dashboard from './Dashboard';
 
 function App() {
   const location = useLocation();
   return (
     <div className="App">
-      <Header />
+      {!['/verif-email', '/confirm-forgot-password', '/confirm-update-email'].includes(location.pathname) && <Header />}
+
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/verify-email/:token' element={<VerifyAccount />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/verify-email' element={<VerifyAccount />} />
+
       </Routes>
       {/* <Footer /> */}
     </div>

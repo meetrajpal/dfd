@@ -14,6 +14,7 @@ export default function Signup() {
     });
     const [error, setError] = useState({});
     const navigate = useNavigate();
+    const [loader, setLoader] = useState(false);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -54,10 +55,12 @@ export default function Signup() {
     async function handleSubmit(event) {
         event.preventDefault();
         if (!validateForm()) return;
+        setLoader(true);
 
         const uri = urls.find(data => data.operationType === 'createUser')?.url;
         if (!uri) {
             alert("No signup endpoint found.");
+            setLoader(false);
             return;
         }
 
@@ -65,20 +68,24 @@ export default function Signup() {
             const res = await axios.post(process.env.REACT_APP_API_URL + uri, form);
             const data = res.data;
             if (data.isSuccess) {
+                setLoader(false);
                 alert("Signup successful! Redirecting to login...");
                 navigate('/login');
             }
         } catch (error) {
             if (error.response?.data?.message) {
                 setError({ form: error.response.data.message });
+                setLoader(false);
             } else {
                 setError({ form: "Signup failed. Try again later." });
+                setLoader(false);
             }
         }
     }
 
     return (
         <div className="content">
+            {loader && <div id="preloader"></div>}
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 contents">

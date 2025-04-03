@@ -9,6 +9,8 @@ export default function Login() {
     const formData = new URLSearchParams();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loader, setLoader] = useState(false);
+
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -21,10 +23,12 @@ export default function Login() {
     }
 
     async function submitLogin(event) {
+        setLoader(true);
         event.preventDefault();
         const uri = urls.find(data => data.operationType === 'postLogin')?.url;
         if (uri == null) {
             window.alert("No uri found for postlogin.");
+            setLoader(false);
             return;
         }
         try {
@@ -39,23 +43,31 @@ export default function Login() {
                 const token = decodeToken(localStorage.getItem('token'));
                 localStorage.setItem('username', token.sub);
                 localStorage.setItem('user_id', token.id);
+                setLoader(false);
+                alert("Login Success");
                 navigate('/dashboard');
             } else {
+                setLoader(false);
                 setError(data.message);
             }
         } catch (error) {
             if (!error.response.data.isSuccess) {
                 setError(error.response.data.errorResDto.details);
+                setLoader(false);
+
             } else if (error.request) {
                 setError("No response from server");
+                setLoader(false);
             } else {
                 setError("Error: " + error.message);
+                setLoader(false);
             }
         }
     }
 
     return (
         <div className="content">
+            {loader && <div id="preloader"></div>}
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 contents">
