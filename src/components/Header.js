@@ -13,12 +13,11 @@ function Header() {
             return;
         }
 
-        if(window.confirm("Are you sure you want to logout?")){
+        if (window.confirm("Are you sure you want to logout?")) {
             try {
                 const res = await axios.get(process.env.REACT_APP_API_URL + uri);
                 const data = res.data;
                 if (data.isSuccess) {
-                    alert("Logout success.")
                     localStorage.removeItem('token');
                     localStorage.removeItem('username');
                     localStorage.removeItem('user_id');
@@ -42,7 +41,7 @@ function Header() {
             return;
         }
 
-        if(window.confirm("Are you sure you want to delete your account?")){
+        if (window.confirm("Are you sure you want to delete your account?")) {
             try {
                 const res = await axios.delete(process.env.REACT_APP_API_URL + uri + `?user_id=${localStorage.getItem('user_id')}`);
                 const data = res.data;
@@ -88,15 +87,19 @@ function Header() {
                 {
                     localStorage.getItem('token') == null ?
                         <Link className="btn-getstarted" to="login">Try for free</Link> :
+
+                        (location.pathname !== "/update-email") && (location.pathname !== "/confirm-update-email") && (location.pathname !== "/verif-account") ? 
+
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn border dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 {localStorage.getItem('username')}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><Link to="update-email" className='dropdown-item'>Update Email</Link></li>
                                 <li><button class="dropdown-item" onClick={deleteAccount}>Delete Account</button></li>
                                 <li><button class="dropdown-item" onClick={logout}>Log out</button></li>
                             </ul>
-                        </div>
+                        </div> : ""
                 }
             </div>
         </header>

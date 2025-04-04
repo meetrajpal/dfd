@@ -18,7 +18,7 @@ export default function LandingPage() {
                         with high accuracy. Protect yourself from digital deception.
                     </p>
                     <div className="d-flex">
-                        <Link to="dashboard" className="btn-get-started scrollto">Get Started</Link>
+                        <Link to="login" className="btn-get-started scrollto">Get Started</Link>
                     </div>
                 </div>
 
