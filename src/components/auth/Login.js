@@ -1,6 +1,6 @@
 import '../css/login.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import urls from '../../config/url.json';
 import { decodeToken } from "../../utils/decodeToken";
@@ -14,12 +14,6 @@ export default function Login() {
 
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (localStorage.getItem("token")) {
-            navigate("/dashboard");
-        }
-    }, [])
 
     function handleUsername(event) {
         setUsername(event.target.value);

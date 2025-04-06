@@ -115,7 +115,11 @@ export default function Dashboard() {
                         const data = res.data;
                         if (data.isSuccess) {
                             dispatch(fetchHistory(localStorage.getItem('user_id')));
+                            alert(data.message);
                             setLoader(false);
+                        } else if (data.detail) {
+                            setLoader(false);
+                            alert(data.detail);
                         } else {
                             alert(data.message);
                             setLoader(false);
@@ -156,7 +160,11 @@ export default function Dashboard() {
                         const data = res.data;
                         if (data.isSuccess) {
                             dispatch(fetchHistory(localStorage.getItem('user_id')));
+                            alert(data.message);
                             setLoader(false);
+                        } else if (data.detail) {
+                            setLoader(false);
+                            alert(data.detail);
                         } else {
                             alert(data.message);
                             setLoader(false);
@@ -197,7 +205,11 @@ export default function Dashboard() {
                         const data = res.data;
                         if (data.isSuccess) {
                             dispatch(fetchHistory(localStorage.getItem('user_id')));
+                            alert(data.message);
                             setLoader(false);
+                        } else if (data.detail) {
+                            setLoader(false);
+                            alert(data.detail);
                         } else {
                             alert(data.message);
                             setLoader(false);
@@ -238,7 +250,11 @@ export default function Dashboard() {
                         const data = res.data;
                         if (data.isSuccess) {
                             dispatch(fetchHistory(localStorage.getItem('user_id')));
+                            alert(data.message);
                             setLoader(false);
+                        } else if (data.detail) {
+                            setLoader(false);
+                            alert(data.detail);
                         } else {
                             alert(data.message);
                             setLoader(false);
@@ -279,7 +295,11 @@ export default function Dashboard() {
                         const data = res.data;
                         if (data.isSuccess) {
                             dispatch(fetchHistory(localStorage.getItem('user_id')));
+                            alert(data.message);
                             setLoader(false);
+                        } else if (data.detail) {
+                            setLoader(false);
+                            alert(data.detail);
                         } else {
                             alert(data.message);
                             setLoader(false);
@@ -322,7 +342,7 @@ export default function Dashboard() {
                 </div>
             )}
 
-            <div className="container d-flex flex-column align-items-center mt-5 justify-content-center">
+            <div className="container d-flex flex-column align-items-center justify-content-center " style={(history.length < 6) ? (history.length < 4) ? { "height": "100vh", "margin-top":"-25vh" } : { "height": "100vh", "margin-top":"-15vh" } : { "margin": "5vh auto" }}>
                 <select
                     className="form-select w-50 mb-3"
                     value={inputType}
@@ -330,7 +350,7 @@ export default function Dashboard() {
                     disabled={!curUser.verified_email}
                 >
                     <option value="file">Direct Video Upload</option>
-                    <option value="ig">Instagram Reel</option>
+                    <option value="ig">Instagram Reel / Video</option>
                     <option value="fb">Facebook Video</option>
                     <option value="xv">Twitter Video / Status</option>
                     <option value="yt">YouTube Video</option>
